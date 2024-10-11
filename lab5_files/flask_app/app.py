@@ -9,7 +9,7 @@ app = Flask(__name__)
 r = redis.Redis(host="redis", port=6379)
 
 # PostgreSQL connection
-DATABASE_URL = os.getenv("DATABASE_URL")  # Ensure DATABASE_URL is set in the environment
+DATABASE_URL = os.getenv("DATABASE_URL")  
 conn = psycopg2.connect(DATABASE_URL)
 cur = conn.cursor()
 
