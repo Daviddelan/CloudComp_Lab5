@@ -18,7 +18,7 @@ services:
       - "6379:6379"
 
   db:
-    container_name: postgres_container  # This must be properly formatted as key: value
+    container_name: postgres_container  
     image: "postgres"
     restart: always
     environment:
@@ -29,7 +29,7 @@ services:
       - "5432:5432"
 
   pgadmin:
-    container_name: pgadmin4_container  # Same here, ensure key: value format
+    container_name: pgadmin4_container 
     image: dpage/pgadmin4
     restart: always
     environment: 
