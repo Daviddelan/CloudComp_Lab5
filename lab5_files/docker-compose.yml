@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  web:
+    build: ./flask_app
+    ports:
+      - "5000:5000"
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgres://root:root@db:5432/postgres_db
+    depends_on:
+      - redis
+      - db
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+
+  db:
+    container_name: postgres_container  # This must be properly formatted as key: value
+    image: "postgres"
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=postgres_db
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    container_name: pgadmin4_container  # Same here, ensure key: value format
+    image: dpage/pgadmin4
+    restart: always
+    environment: 
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com 
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "5050:80"
+
